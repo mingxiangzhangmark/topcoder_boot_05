@@ -1,0 +1,133 @@
+:root{
+  --color-red: #f5222d;
+  --color-gold: #faad14;
+  --color-lime: #a0d911;
+  --color-cyan: #13c2c2;
+  --color-blue: #1677ff;
+  --color-purple: #722ed1;
+  --color-magenta: #eb2f96;
+  font-size: 10px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html, body{
+ width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  font-size: 1.6rem;
+}
+
+
+@mixin flexCenter($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin myBorder($width: 2px,$style: dashed, $color: #666) {
+  border: $width $style $color;
+}
+
+
+#app {
+  width: 100%;
+  height: 100%;
+  @include myBorder();
+  @include flexCenter(column, space-between center);
+  background-color: var(--color-red);
+  header{
+    width: 100%;
+    background-color: var(--color-gold);
+    nav{
+      margin: 0 auto;
+      height: 5rem;
+      width: 100%;
+      max-width: 120rem;
+      @include myBorder( );
+      background-color: var(--color-lime);
+    }
+  }
+  main {
+    width: 100%;
+    // height: 100%;
+    flex: 1;
+    height: 10rem;
+    @include myBorder();
+    @include flexCenter(row, space-between, center);
+    background-color: var(--color-blue);
+    @media(width <480px){
+      flex-direction: column;
+    }
+    nav {
+      @include myBorder();
+      width: calc(20rem + 10%);
+      height: 100%;
+      background-color: var(--color-cyan);
+      @media(width<768px){
+        display: none;
+      }
+      @media(width<486px){
+        display: flex;
+        width: 100%;
+        height: 100%;
+        max-height: 10rem;
+      }
+    }
+
+    section {
+      flex: 1;
+      height: 100%;
+      @include myBorder();
+      background-color: var(--color-purple);
+      @media(width<486px){
+        width: 100%;
+        flex: 1;
+      }
+    }
+
+    aside {
+      width: calc(20rem + 10%);
+      height: 100%;
+      @include myBorder();
+      background-color: var(--color-magenta);
+      @media(width<1200px){
+        display: none;
+      }
+      @media(width<486px){
+        display: flex;
+        width: 100%;
+        height: 100%;
+        max-height: calc(10rem + 10%);
+      }
+    }
+  }
+  footer{
+    width: 100%;
+    height: 5rem;
+    @include myBorder();
+    background-color: var(--color-lime);
+  }
+}
+
+@media(width<768px){
+  :root{
+    font-size: 0.8rem;
+  }
+  
+}
+
+@media(width<486px){
+  :root{
+    font-size: 0.4rem;
+  }
+}
